@@ -9,4 +9,6 @@
 /.idea
 .env
 .env.backup
+composer.lock
+yarn.lock
 yarn-error.log
