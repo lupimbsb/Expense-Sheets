@@ -77,21 +77,22 @@ class PainelController extends Controller
         }
         //GET MONTHS WITH DEBTS REGISTERED
         $months = array();
-        $firstMonth = str_replace("/", "-", Divida::orderBy("data_referencia", "asc")->first()->data_referencia);
-        $lastMonth = str_replace("/", "-", Divida::latest("data_referencia")->first()->data_referencia);
-        $start = (new \DateTime($firstMonth))->modify('first day of this month');
-        $end = (new \DateTime($lastMonth))->modify('first day of next month');
-        $interval = \DateInterval::createFromDateString('1 month');
-        $period = new \DatePeriod($start, $interval, $end);
+        if (!Divida::all()->isEmpty()) {
+            $firstMonth = str_replace("/", "-", Divida::orderBy("data_referencia", "asc")->first()->data_referencia);
+            $lastMonth = str_replace("/", "-", Divida::latest("data_referencia")->first()->data_referencia);
+            $start = (new \DateTime($firstMonth))->modify('first day of this month');
+            $end = (new \DateTime($lastMonth))->modify('first day of next month');
+            $interval = \DateInterval::createFromDateString('1 month');
+            $period = new \DatePeriod($start, $interval, $end);
 
-        foreach ($period as $dt) {
-            $monthDigit = intval($dt->format("m"));
-            if ($currentMonth->month == $monthDigit) {
-                $months[$monthDigit]['current'] = true;
+            foreach ($period as $dt) {
+                $monthDigit = intval($dt->format("m"));
+                if ($currentMonth->month == $monthDigit) {
+                    $months[$monthDigit]['current'] = true;
+                }
+                $months[$monthDigit]['date'] = $dt->format("M/Y");
             }
-            $months[$monthDigit]['date'] = $dt->format("M/Y");
         }
-
         return view("dashboard")
             ->with("users", User::all())
             ->with("dividas", $dividasRecentes)
