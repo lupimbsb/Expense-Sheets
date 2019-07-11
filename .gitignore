@@ -1,0 +1,12 @@
+/etc
+/data
+/web
+/node_modules
+/public/hot
+/public/storage
+/storage/*
+/vendor
+/.idea
+.env
+.env.backup
+yarn-error.log
