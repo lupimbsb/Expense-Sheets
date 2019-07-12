@@ -2,7 +2,8 @@
 
 namespace Gastos\Http\Controllers;
 
-use Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Gastos\Tipo;
 use Gastos\Http\Requests\TiposRequest;
 
@@ -10,7 +11,6 @@ class TiposController extends Controller
 {
     /**
      * Create a new Tipo controller instance.
-     *
      * @return void
      */
     public function __construct()
@@ -20,8 +20,7 @@ class TiposController extends Controller
 
     /**
      * Create a new Tipo list view instance.
-     *
-     * @return view
+     * @return View
      */
     public function index()
     {
@@ -31,8 +30,7 @@ class TiposController extends Controller
 
     /**
      * Create a new Tipo form view instance.
-     *
-     * @return view
+     * @return View
      */
     public function create()
     {
@@ -41,8 +39,8 @@ class TiposController extends Controller
 
     /**
      * Store Tipo and create a new list view instance.
-     *
-     * @return view
+     * @param TiposRequest $request
+     * @return RedirectResponse
      */
     public function store(TiposRequest $request)
     {
@@ -55,8 +53,8 @@ class TiposController extends Controller
 
     /**
      * Create a new Tipo form view instance.
-     *
-     * @return view
+     * @param $id
+     * @return View
      */
     public function edit($id = 0)
     {
@@ -68,8 +66,9 @@ class TiposController extends Controller
 
     /**
      * Modify Tipo and create a new list view instance.
-     *
-     * @return view
+     * @param TiposRequest $request
+     * @param $id
+     * @return RedirectResponse
      */
     public function update(TiposRequest $request, $id)
     {
@@ -84,8 +83,8 @@ class TiposController extends Controller
 
     /**
      * Destroy Tipo and create a new list view instance.
-     *
-     * @return view
+     * @param Integer $id
+     * @return RedirectResponse
      */
     public function destroy($id)
     {

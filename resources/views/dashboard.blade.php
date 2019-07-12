@@ -96,7 +96,7 @@
                                                 <div class="col-sm-10" class="checkbox">
                                                     <label>
                                                         <input type="checkbox" value="{{$u['id']}}" name="user_id[]"
-                                                               checked>
+                                                                {{Auth::user()->id != $u['id'] ? 'checked' : ''}}>
                                                         {{$u['username']}}
                                                     </label>
                                                 </div>

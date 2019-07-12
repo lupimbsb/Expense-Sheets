@@ -50,8 +50,9 @@
                                     <label for="inputValor" class="col-sm-2  control-label">Valor</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputValor" name='valor'
-                                               placeholder="R$ 00,00"
+                                        <input type="text" class="form-control text-left" id="inputValor" name='valor'
+                                               placeholder="R$ 00.00" data-inputmask="'alias': 'numeric', 'groupSeparator': '',
+                                                'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'"
                                                value="{{$pagamento->valor ?? old('valor')}}">
                                     </div>
                                 </div>

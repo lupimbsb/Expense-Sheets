@@ -2,16 +2,16 @@
 
 namespace Gastos\Http\Controllers;
 
-use Illuminate\Support\Facades\Hash;
-use Request;
 use Gastos\User;
 use Gastos\Http\Requests\UsersRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 
 class UsersController extends Controller
 {
     /**
      * Create a new User controller instance.
-     *
      * @return void
      */
     public function __construct()
@@ -21,8 +21,7 @@ class UsersController extends Controller
 
     /**
      * Create a new User list view instance.
-     *
-     * @return view
+     * @return View
      */
     public function index()
     {
@@ -32,8 +31,7 @@ class UsersController extends Controller
 
     /**
      * Create a new User form view instance.
-     *
-     * @return view
+     * @return View
      */
     public function create()
     {
@@ -42,8 +40,8 @@ class UsersController extends Controller
 
     /**
      * Store User and create a new list view instance.
-     *
-     * @return view
+     * @param UsersRequest $request
+     * @return RedirectResponse
      */
     public function store(UsersRequest $request)
     {
@@ -61,8 +59,8 @@ class UsersController extends Controller
 
     /**
      * Create a new User form view instance.
-     *
-     * @return view
+     * @param $id
+     * @return View
      */
     public function edit($id = 0)
     {
@@ -74,8 +72,9 @@ class UsersController extends Controller
 
     /**
      * Modify User and create a new list view instance.
-     *
-     * @return view
+     * @param UsersRequest $request
+     * @param $id
+     * @return RedirectResponse
      */
     public function update(UsersRequest $request, $id)
     {
@@ -90,8 +89,8 @@ class UsersController extends Controller
 
     /**
      * Destroy User and create a new list view instance.
-     *
-     * @return view
+     * @param $id
+     * @return RedirectResponse
      */
     public function destroy($id)
     {

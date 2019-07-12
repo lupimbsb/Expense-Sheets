@@ -1,27 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Lupim
- * Date: 29/01/2019
- * Time: 17:36
- */
 
 namespace Gastos\Http\Controllers;
 
-use Carbon\Carbon;
 use Gastos\Divida;
 use Gastos\Pagamento;
 use Gastos\Tipo;
 use Gastos\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
-use Request;
+use Illuminate\View\View;
 
-class PainelController extends Controller
+class DashboardController extends Controller
 {
 
     /**
      * Create a new Panel controller instance.
-     *
      * @return void
      */
     public function __construct()
@@ -31,8 +24,8 @@ class PainelController extends Controller
 
     /**
      * Create a new Panel dashboard view instance.
-     *
-     * @return view
+     * @return View
+     * @throws \Exception
      */
     public function dashboard()
     {

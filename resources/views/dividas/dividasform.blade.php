@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="form-group">
 
-                                    <label for="inputDescTipo" class="col-sm-2  control-label">Desc.</label>
+                                    <label for="inputDescTipo" class="col-sm-2  control-label">Descrição</label>
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="inputDescTipo" name='tipo_desc'
@@ -61,7 +61,7 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control text-left" id="inputValor" name='valor'
-                                               data-inputmask="'alias': 'numeric', 'groupSeparator': '',
+                                               placeholder="R$ 00.00" data-inputmask="'alias': 'numeric', 'groupSeparator': '',
                                                 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'"
                                                value="{{$divida->valor ?? old('valor')}}">
                                     </div>
@@ -88,7 +88,7 @@
                                                 @if(isset($divida->id))
                                                     {{$divida->devedores->contains('user_id',$u['id']) ? "checked" : ''}}
                                                         @endif
-                                                >
+                                                        {{Auth::user()->id != $u['id'] ? 'checked' : ''}}>
                                                 {{$u['username']}}
                                             </label>
                                         </div>

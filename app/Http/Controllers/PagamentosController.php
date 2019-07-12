@@ -3,15 +3,15 @@
 namespace Gastos\Http\Controllers;
 
 use Gastos\User;
-use Request;
 use Gastos\Pagamento;
 use Gastos\Http\Requests\PagamentosRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class PagamentosController extends Controller
 {
     /**
      * Create a new Pagamento controller instance.
-     *
      * @return void
      */
     public function __construct()
@@ -21,8 +21,7 @@ class PagamentosController extends Controller
 
     /**
      * Create a new Pagamento list view instance.
-     *
-     * @return view
+     * @return View
      */
     public function index()
     {
@@ -32,8 +31,7 @@ class PagamentosController extends Controller
 
     /**
      * Create a new Pagamento form view instance.
-     *
-     * @return view
+     * @return View
      */
     public function create()
     {
@@ -42,8 +40,8 @@ class PagamentosController extends Controller
 
     /**
      * Store Pagamento and create a new list view instance.
-     *
-     * @return view
+     * @param PagamentosRequest $request
+     * @return RedirectResponse
      */
     public function store(PagamentosRequest $request)
     {
@@ -56,8 +54,8 @@ class PagamentosController extends Controller
 
     /**
      * Create a new Pagamento form view instance.
-     *
-     * @return view
+     * @param $id
+     * @return View
      */
     public function edit($id = 0)
     {
@@ -69,8 +67,9 @@ class PagamentosController extends Controller
 
     /**
      * Modify Pagamento and create a new list view instance.
-     *
-     * @return view
+     * @param PagamentosRequest $request
+     * @param Integer $id
+     * @return RedirectResponse
      */
     public function update(PagamentosRequest $request, $id)
     {
@@ -85,8 +84,8 @@ class PagamentosController extends Controller
 
     /**
      * Destroy Pagamento and create a new list view instance.
-     *
-     * @return view
+     * @param Integer $id
+     * @return RedirectResponse
      */
     public function destroy($id)
     {

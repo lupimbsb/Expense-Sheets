@@ -6,16 +6,17 @@ use Gastos\Tipo;
 use Gastos\Divida;
 use Gastos\Devedores;
 use Gastos\User;
+use Gastos\Http\Requests\DividasRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
-use Request;
-use Gastos\Http\Requests\DividasRequest;
+use Illuminate\View\View;
+use phpDocumentor\Reflection\Types\Integer;
 
 class DividasController extends Controller
 {
     /**
      * Create a new Divida controller instance.
-     *
      * @return void
      */
     public function __construct()
@@ -25,8 +26,7 @@ class DividasController extends Controller
 
     /**
      * Create a new Divida list view instance.
-     *
-     * @return view
+     * @return View
      */
     public function index()
     {
@@ -36,8 +36,7 @@ class DividasController extends Controller
 
     /**
      * Create a new Divida form view instance.
-     *
-     * @return view
+     * @return View
      */
     public function create()
     {
@@ -46,8 +45,8 @@ class DividasController extends Controller
 
     /**
      * Store Divida and create a new list view instance.
-     *
-     * @return view
+     * @param DividasRequest $request
+     * @return RedirectResponse
      */
     public function store(DividasRequest $request)
     {
@@ -81,8 +80,8 @@ class DividasController extends Controller
 
     /**
      * Create a new Divida form view instance.
-     *
-     * @return view
+     * @param $id
+     * @return View
      */
     public function edit($id = 0)
     {
@@ -94,8 +93,9 @@ class DividasController extends Controller
 
     /**
      * Modify Divida and create a new list view instance.
-     *
-     * @return view
+     * @param DividasRequest $request
+     * @param Integer $id
+     * @return RedirectResponse
      */
     public function update(DividasRequest $request, $id)
     {
@@ -126,8 +126,8 @@ class DividasController extends Controller
 
     /**
      * Destroy Divida and create a new list view instance.
-     *
-     * @return view
+     * @param Integer $id
+     * @return RedirectResponse
      */
     public function destroy($id)
     {

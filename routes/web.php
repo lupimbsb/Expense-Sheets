@@ -11,8 +11,8 @@
 |
 */
 
-//PAINEL
-Route::get('/', "PainelController@dashboard");
+//DASHBOARD
+Route::get('/', "DashboardController@dashboard");
 
 //USERS
 Route::resource('user', 'UsersController')->except(['destroy']);
