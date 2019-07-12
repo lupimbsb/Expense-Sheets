@@ -7,6 +7,7 @@ use Gastos\Divida;
 use Gastos\Devedores;
 use Gastos\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 use Request;
 use Gastos\Http\Requests\DividasRequest;
 
@@ -50,6 +51,7 @@ class DividasController extends Controller
      */
     public function store(DividasRequest $request)
     {
+        $previous = str_replace(url('/'), '', URL::previous());
         $data = $request->all();
         $user = Auth::user();
         $data['criador_id'] = $user->id;
@@ -65,9 +67,15 @@ class DividasController extends Controller
             Devedores::create($dataInsertDevedores);
         }
         if ($insert) {
-            return redirect()->action('DividasController@index')->withSuccess('Dívida adicionado com sucesso!');
+            if ($previous == '/') {
+                return redirect()->back()->withSuccess('Dívida adicionado com sucesso!');
+            }
+            return redirect()->action('DividasController@index')->withSuccess('Dívida adicionada com sucesso!');
         } else {
-            return redirect()->action('DividasController@index')->withFailure('Não foi possível adicionar o dívida!');
+            if ($previous == '/') {
+                return redirect()->back()->withSuccess('Não foi possível adicionar o dívida!');
+            }
+            return redirect()->action('DividasController@index')->withFailure('Não foi possível adicionar a dívida!');
         }
     }
 
@@ -110,9 +118,9 @@ class DividasController extends Controller
         }
 
         if ($divida->save()) {
-            return redirect()->action('DividasController@index')->withSuccess('Dívida editado com sucesso!');
+            return redirect()->action('DividasController@index')->withSuccess('Dívida editada com sucesso!');
         } else {
-            return redirect()->action('DividasController@index')->withFailure('Não foi possível editar o dívida!');
+            return redirect()->action('DividasController@index')->withFailure('Não foi possível editar a dívida!');
         }
     }
 
@@ -126,9 +134,9 @@ class DividasController extends Controller
         $divida = Divida::find($id);
 
         if (empty($divida)) {
-            return redirect()->action('DividasController@index')->withFailure('Não foi possível encontrar o dívida!');
+            return redirect()->action('DividasController@index')->withFailure('Não foi possível encontrar a dívida!');
         }
         $divida->delete();
-        return redirect()->action('DividasController@index')->withSuccess('Dívida removido com sucesso!');
+        return redirect()->action('DividasController@index')->withSuccess('Dívida removida com sucesso!');
     }
 }

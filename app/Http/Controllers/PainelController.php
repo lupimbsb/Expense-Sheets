@@ -11,6 +11,7 @@ namespace Gastos\Http\Controllers;
 use Carbon\Carbon;
 use Gastos\Divida;
 use Gastos\Pagamento;
+use Gastos\Tipo;
 use Gastos\User;
 use Illuminate\Support\Facades\Input;
 use Request;
@@ -57,11 +58,15 @@ class PainelController extends Controller
         foreach (User::all() as $user) {
             $arrayTotais['dividasPassadas'][$user->id] = 0;
             foreach ($dividasPassadas as $dp) {
-                $arrayTotais['dividasPassadas'][$user->id] += $dp->valor * $dp->devedores->where("user_id", $user->id)->first()->porcentagem;
+                if (!$dp->devedores->where("user_id", $user->id)->isEmpty()) {
+                    $arrayTotais['dividasPassadas'][$user->id] += $dp->valor * $dp->devedores->where("user_id", $user->id)->first()->porcentagem;
+                }
             }
             $arrayTotais['dividasRecentes'][$user->id] = 0;
             foreach ($dividasRecentes as $dr) {
-                $arrayTotais['dividasRecentes'][$user->id] += $dr->valor * $dr->devedores->where("user_id", $user->id)->first()->porcentagem;
+                if (!$dr->devedores->where("user_id", $user->id)->isEmpty()) {
+                    $arrayTotais['dividasRecentes'][$user->id] += $dr->valor * $dr->devedores->where("user_id", $user->id)->first()->porcentagem;
+                }
             }
             $arrayTotais['pagamentosPassados'][$user->id] = 0;
             foreach ($pagamentosPassados->where("user_id", $user->id) as $pp) {
@@ -93,8 +98,19 @@ class PainelController extends Controller
                 $months[$monthDigit]['date'] = $dt->format("M/Y");
             }
         }
+
+        //GET DEBTS BY TYPE FOR CHART
+        $dividas = Divida::all();
+        $dividasPorTipo = $dividas->groupBy(function ($item) {
+            return $item['tipo_id'];
+        })->mapWithKeys(function ($month) {
+            return [$month->first()->tipo->descricao => $month->sum('valor')];
+        });
+
         return view("dashboard")
             ->with("users", User::all())
+            ->with('tipos', Tipo::all())
+            ->with("dividasPorTipo", $dividasPorTipo)
             ->with("dividas", $dividasRecentes)
             ->with("arrayTotais", $arrayTotais)
             ->with("months", $months)

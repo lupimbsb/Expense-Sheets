@@ -5,7 +5,7 @@
     <main role="main">
         <div class="login-box">
             <div class="login-logo">
-                <a href="/"><b>Gastos</b></a>
+                <a href="/" style="color: white;"><b>Gastos</b></a>
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">

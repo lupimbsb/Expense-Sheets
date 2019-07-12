@@ -13,22 +13,23 @@
     <link rel="stylesheet" href="/css/AdminLTE.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/css/fontawesome/src/all.min.css">
+    <!-- ChartJs -->
+    <link rel="stylesheet" href="/css/Chart.min.css">
     <!-- Google Font -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-    <header class="main-header">
-
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="/">Gastos</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                @auth
+<div class="wrapper" @if(Request::is('login'))style="background-color: #343a40;"@endif>
+    @auth
+        <header class="main-header">
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <a class="navbar-brand" href="/">Gastos</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item {{Request::is('/') ? 'active' : ""}}">
                             <a class="nav-link" href="/">Home</a>
@@ -63,10 +64,14 @@
                            href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Logout</a>
                     </form>
-                @endguest
-            </div>
-        </nav>
-    </header>
+                </div>
+            </nav>
+        </header>
+    @endauth
+<!-- Color Palette -->
+    <script src="/js/palette.js"></script>
+<!-- ChartJs -->
+    <script src="/js/Chart.min.js"></script>
     @yield('conteudo')
 </div>
 <!-- jQuery 3 -->
