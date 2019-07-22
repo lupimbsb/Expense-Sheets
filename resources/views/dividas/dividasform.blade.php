@@ -35,10 +35,10 @@
                                     <label for="inputPagador" class="col-sm-2  control-label">Pagador</label>
 
                                     <div class="col-sm-10">
-                                        <select class="form-control" id="inputPagador" name='user_id'>
+                                        <select class="form-control" id="inputPagador" name='criador_id'>
                                             @foreach($users as $user)
 
-                                                <option value="{{$user->id}}" {{(Auth::user()->id == $user->id) ? 'selected' : ''}}>
+                                                <option value="{{$user->id}}" {{($divida->user->id == $user->id) || (Auth::user()->id == $user->id) ? 'selected' : ''}}>
                                                     {{$user->username}}
                                                 </option>
                                             @endforeach
