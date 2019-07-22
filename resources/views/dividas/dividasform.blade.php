@@ -38,7 +38,7 @@
                                         <select class="form-control" id="inputPagador" name='criador_id'>
                                             @foreach($users as $user)
 
-                                                <option value="{{$user->id}}" {{(isset($divida->id) && $divida->user->id == $user->id) || (Auth::user()->id == $user->id) ? 'selected' : ''}}>
+                                                <option value="{{$user->id}}" {{(isset($divida->id) && $divida->user->id == $user->id) ? 'selected' : (Auth::user()->id == $user->id) ? 'selected' : ''}}>
                                                     {{$user->username}}
                                                 </option>
                                             @endforeach
@@ -52,7 +52,7 @@
                                         <select class="form-control" id="inputTipo" name='tipo_id'>
                                             @foreach($tipos as $tipo)
 
-                                                <option value="{{$tipo->id}}" {{(isset($tipo->mirror_id) && $tipo->mirror_id == $tipo->id) ? 'selected' : ''}}>
+                                                <option value="{{$tipo->id}}" {{(isset($divida->id) && $divida->tipo->id == $tipo->id) ? 'selected' : ''}}>
                                                     {{$tipo->descricao}}
                                                 </option>
                                             @endforeach
