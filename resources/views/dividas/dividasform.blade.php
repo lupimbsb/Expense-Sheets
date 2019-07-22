@@ -89,7 +89,7 @@
                                                name="data_referencia" data-inputmask-alias="datetime"
                                                data-inputmask-inputformat="dd/mm/yyyy"
                                                data-inputmask-placeholder="00/00/0000"
-                                               value="{{$pagamento->data_referencia ?? old('data_referencia', date("d/m/Y"))}}">
+                                               value="{{$divida->data_referencia ?? old('data_referencia', date("d/m/Y"))}}">
                                     </div>
                                 </div>
 
