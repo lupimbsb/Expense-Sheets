@@ -6,6 +6,7 @@ use Gastos\User;
 use Gastos\Pagamento;
 use Gastos\Http\Requests\PagamentosRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 
 class PagamentosController extends Controller
@@ -25,7 +26,7 @@ class PagamentosController extends Controller
      */
     public function index()
     {
-        $pagamentos = Pagamento::all();
+        $pagamentos = Pagamento::orderBy("data_referencia", "desc")->get();
         return view('pagamentos.pagamentoslist')->withPagamentos($pagamentos);
     }
 
@@ -45,9 +46,16 @@ class PagamentosController extends Controller
      */
     public function store(PagamentosRequest $request)
     {
+        $previous = str_replace(url('/'), '', URL::previous());
         if (Pagamento::create($request->all())) {
+            if ($previous == '/') {
+                return redirect()->back()->withSuccess('Pagamento adicionado com sucesso!');
+            }
             return redirect()->action('PagamentosController@index')->withSuccess('Pagamento adicionado com sucesso!');
         } else {
+            if ($previous == '/') {
+                return redirect()->back()->withFailure('Não foi possível adicionar o pagamento!');
+            }
             return redirect()->action('PagamentosController@index')->withFailure('Não foi possível adicionar o pagamento!');
         }
     }

@@ -32,6 +32,20 @@
                             <input type="hidden" name='id' value="{{$divida->id ?? ''}}">
                             <div class="box-body">
                                 <div class="form-group">
+                                    <label for="inputPagador" class="col-sm-2  control-label">Pagador</label>
+
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="inputPagador" name='user_id'>
+                                            @foreach($users as $user)
+
+                                                <option value="{{$user->id}}" {{(Auth::user()->id == $user->id) ? 'selected' : ''}}>
+                                                    {{$user->username}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="inputTipo" class="col-sm-2  control-label">Tipo</label>
 
                                     <div class="col-sm-10">
@@ -75,7 +89,7 @@
                                                name="data_referencia" data-inputmask-alias="datetime"
                                                data-inputmask-inputformat="dd/mm/yyyy"
                                                data-inputmask-placeholder="00/00/0000"
-                                               value="{{isset($divida->data_referencia) ? $divida->data_referencia : date("d/m/Y")}}">
+                                               value="{{$pagamento->data_referencia ?? old('data_referencia', date("d/m/Y"))}}">
                                     </div>
                                 </div>
 

@@ -65,7 +65,7 @@
                                                name="data_referencia" data-inputmask-alias="datetime"
                                                data-inputmask-inputformat="dd/mm/yyyy"
                                                data-inputmask-placeholder="00/00/0000"
-                                               value="{{isset($pagamento->data_referencia) ? $pagamento->data_referencia : date("d/m/Y")}}">
+                                               value="{{$pagamento->data_referencia ?? old('data_referencia', date("d/m/Y"))}}">
                                     </div>
                                 </div>
                             </div>

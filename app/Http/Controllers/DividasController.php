@@ -30,7 +30,7 @@ class DividasController extends Controller
      */
     public function index()
     {
-        $dividas = Divida::all();
+        $dividas = Divida::orderBy("data_referencia", "desc")->get();
         return view('dividas.dividaslist')->withDividas($dividas);
     }
 
@@ -67,7 +67,7 @@ class DividasController extends Controller
         }
         if ($insert) {
             if ($previous == '/') {
-                return redirect()->back()->withSuccess('Dívida adicionado com sucesso!');
+                return redirect()->back()->withSuccess('Dívida adicionada com sucesso!');
             }
             return redirect()->action('DividasController@index')->withSuccess('Dívida adicionada com sucesso!');
         } else {

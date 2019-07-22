@@ -42,6 +42,20 @@
                                     <input type="hidden" name='id'>
                                     <div class="box-body">
                                         <div class="form-group">
+                                            <label for="inputPagador" class="col-sm-2  control-label">Pagador</label>
+
+                                            <div class="col-sm-10">
+                                                <select class="form-control" id="inputPagador" name='user_id'>
+                                                    @foreach($users as $user)
+
+                                                        <option value="{{$user->id}}" {{(Auth::user()->id == $user->id) ? 'selected' : ''}}>
+                                                            {{$user->username}}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="inputTipo" class="col-sm-2  control-label">Tipo</label>
 
                                             <div class="col-sm-10">
@@ -136,8 +150,10 @@
                                             <label for="inputValor" class="col-sm-2  control-label">Valor</label>
 
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputValor" name='valor'
-                                                       placeholder="R$ 00,00">
+                                                <input type="text" class="form-control text-left" id="inputValor"
+                                                       name='valor' placeholder="R$ 00,00"
+                                                       data-inputmask="'alias': 'numeric', 'groupSeparator': '',
+                                                'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -170,7 +186,7 @@
                             <h3 class="box-title">Gastos do Mês</h3>
                         </div>
                         <div class="box-body">
-                            <div style="width:100%; margin-top:20px;">
+                            <div style="width:100%; margin:23px 0;">
                                 <canvas id="myChart"></canvas>
                             </div>
                         </div>
@@ -292,7 +308,7 @@
             options: {
                 responsive: true,
                 legend: {
-                    position: 'top',
+                    position: 'bottom',
                 },
                 title: {
                     display: false

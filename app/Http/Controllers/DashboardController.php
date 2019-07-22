@@ -30,7 +30,12 @@ class DashboardController extends Controller
     public function dashboard()
     {
         //GET PAST AND RECENT DEBTS AND TOTALS
-        $mes = Input::get('month', Carbon::now()->month);
+        $mes = Input::get('month');
+        if (!$mes) {
+            $latest = Divida::latest()->first()->data_referencia;
+            $mes = Carbon::createFromFormat('d/m/Y', $latest)->month;
+
+        }
         $currentMonth = Carbon::createFromFormat('m', $mes);
         $lastMonth = Carbon::createFromFormat('m', $mes)->subMonth();
 
@@ -82,7 +87,7 @@ class DashboardController extends Controller
             $end = (new \DateTime($lastMonth))->modify('first day of next month');
             $interval = \DateInterval::createFromDateString('1 month');
             $period = new \DatePeriod($start, $interval, $end);
-
+            $period = array_reverse(iterator_to_array($period));
             foreach ($period as $dt) {
                 $monthDigit = intval($dt->format("m"));
                 if ($currentMonth->month == $monthDigit) {
@@ -93,8 +98,7 @@ class DashboardController extends Controller
         }
 
         //GET DEBTS BY TYPE FOR CHART
-        $dividas = Divida::all();
-        $dividasPorTipo = $dividas->groupBy(function ($item) {
+        $dividasPorTipo = $dividasRecentes->groupBy(function ($item) {
             return $item['tipo_id'];
         })->mapWithKeys(function ($month) {
             return [$month->first()->tipo->descricao => $month->sum('valor')];
