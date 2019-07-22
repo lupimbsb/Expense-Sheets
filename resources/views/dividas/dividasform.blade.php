@@ -38,7 +38,7 @@
                                         <select class="form-control" id="inputPagador" name='criador_id'>
                                             @foreach($users as $user)
 
-                                                <option value="{{$user->id}}" {{($divida->user->id == $user->id) || (Auth::user()->id == $user->id) ? 'selected' : ''}}>
+                                                <option value="{{$user->id}}" {{(isset($divida->id) && $divida->user->id == $user->id) || (Auth::user()->id == $user->id) ? 'selected' : ''}}>
                                                     {{$user->username}}
                                                 </option>
                                             @endforeach
@@ -101,8 +101,10 @@
                                                 <input type="checkbox" value="{{$u['id']}}" name="user_id[]"
                                                 @if(isset($divida->id))
                                                     {{$divida->devedores->contains('user_id',$u['id']) ? "checked" : ''}}
-                                                        @endif
-                                                        {{Auth::user()->id != $u['id'] ? 'checked' : ''}}>
+                                                        @else
+                                                    {{'checked'}}
+                                                @endif
+                                                >
                                                 {{$u['username']}}
                                             </label>
                                         </div>
