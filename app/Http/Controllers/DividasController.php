@@ -53,7 +53,7 @@ class DividasController extends Controller
         $previous = str_replace(url('/'), '', URL::previous());
         $data = $request->all();
         $user = Auth::user();
-        $data['criador_id'] = isset($data['criador_id']) ? $data['criador_id'] : $user->id;
+        $data['criador_id'] = $user->id;
         $insert = Divida::create($data);
         $dividaId = $insert->id;
 
