@@ -222,7 +222,7 @@
                                 <td>{{$d->tipo->descricao}}</td>
                                 <td>{{$d->tipo_desc}}</td>
                                 @foreach($users as $u)
-                                    @if($d->devedores->contains("user_id", $u->id))
+                                    @if($d->devedores->contains("user_id", $u->id) && $d->user->id != $u->id)
                                         @if($total[$u->id] += $d->valor * ($d->devedores->where("user_id", $u->id)->first()->porcentagem))@endif
                                         <td>
                                             R$ {{$d->valor * ($d->devedores->where("user_id", $u->id)->first()->porcentagem)}}

@@ -56,13 +56,13 @@ class DashboardController extends Controller
         foreach (User::all() as $user) {
             $arrayTotais['dividasPassadas'][$user->id] = 0;
             foreach ($dividasPassadas as $dp) {
-                if (!$dp->devedores->where("user_id", $user->id)->isEmpty()) {
+                if (!$dp->devedores->where("user_id", $user->id)->isEmpty() && $user->id != $dp->user->id) {
                     $arrayTotais['dividasPassadas'][$user->id] += $dp->valor * $dp->devedores->where("user_id", $user->id)->first()->porcentagem;
                 }
             }
             $arrayTotais['dividasRecentes'][$user->id] = 0;
             foreach ($dividasRecentes as $dr) {
-                if (!$dr->devedores->where("user_id", $user->id)->isEmpty()) {
+                if (!$dr->devedores->where("user_id", $user->id)->isEmpty() && $user->id != $dr->user->id) {
                     $arrayTotais['dividasRecentes'][$user->id] += $dr->valor * $dr->devedores->where("user_id", $user->id)->first()->porcentagem;
                 }
             }
