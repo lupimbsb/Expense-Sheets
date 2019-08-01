@@ -74,8 +74,8 @@
                                     <label for="inputValor" class="col-sm-2  control-label">Valor</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control text-left" id="inputValor" name='valor'
-                                               placeholder="R$ 00.00" data-inputmask="'alias': 'numeric', 'groupSeparator': '',
+                                        <input type="text" class="form-control text-left valor" id="inputValor" name='valor'
+                                               placeholder="R$ 00,00" data-inputmask="'alias': 'numeric', 'groupSeparator': '',
                                                 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'"
                                                value="{{$divida->valor ?? old('valor')}}">
                                     </div>
@@ -85,10 +85,8 @@
                                     <label for="updated_at" class="col-sm-2  control-label">Data</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control pull-right" id="data_referencia"
-                                               name="data_referencia" data-inputmask-alias="datetime"
-                                               data-inputmask-inputformat="dd/mm/yyyy"
-                                               data-inputmask-placeholder="00/00/0000"
+                                        <input type="text" class="form-control pull-right date" id="data_referencia"
+                                               name="data_referencia" placeholder="__/__/____" maxlength="10"
                                                value="{{$divida->data_referencia ?? old('data_referencia', date("d/m/Y"))}}">
                                     </div>
                                 </div>

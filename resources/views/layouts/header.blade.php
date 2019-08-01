@@ -18,6 +18,18 @@
     <!-- Google Font -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <!-- Color Palette -->
+    <script src="/js/palette.js"></script>
+    <!-- ChartJs -->
+    <script src="/js/Chart.min.js"></script>
+    <!-- jQuery 3 -->
+    <script src="/js/jquery.min.js"></script>
+    <!-- Bootstrap 4.3.1 -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- JqueryMask 1.14.15 -->
+    <script src="/js/jquery.mask.min.js"></script>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper" @if(Request::is('login'))style="background-color: #343a40;"@endif>
@@ -68,20 +80,13 @@
             </nav>
         </header>
     @endauth
-<!-- Color Palette -->
-    <script src="/js/palette.js"></script>
-<!-- ChartJs -->
-    <script src="/js/Chart.min.js"></script>
     @yield('conteudo')
 </div>
-<!-- jQuery 3 -->
-<script src="/js/jquery.min.js"></script>
-<!-- Bootstrap 4.3.1 -->
-<script src="/js/bootstrap.min.js"></script>
-<!-- JqueryMask 1.14.15 -->
-<script src="/js/jquery.mask.min.js"></script>
 <script>
-    $(":input").inputmask();
+    $(document).ready(function () {
+        $('.valor').mask('#.##0,00', {reverse: true});
+        $('.date').mask('00/00/0000');
+    });
 
     function change_month(value) {
         document.location.href = "/?month=" + value;

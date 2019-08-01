@@ -26,7 +26,6 @@ class DividasRequest extends FormRequest
         return [
             'user_id' => 'required',
             'tipo_id' => 'required',
-            'tipo_desc' => 'required',
             'data_referencia' => 'required',
             'valor' => 'required'
         ];

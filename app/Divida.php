@@ -71,6 +71,17 @@ class Divida extends Model
     }
 
     /**
+     * The method that mutates the valor to a valid date time.
+     *
+     * @param string $value
+     * @return void
+     */
+    public function setValorAttribute($value)
+    {
+        $this->attributes['valor'] = str_replace(",", ".", str_replace(".", "", $value));
+    }
+
+    /**
      * The method that mutates the data_referencia to a valid date time.
      *
      * @param string $value

@@ -84,9 +84,8 @@
                                             <label for="inputValor" class="col-sm-2  control-label">Valor</label>
 
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control text-left" id="inputValor"
-                                                       name='valor'
-                                                       data-inputmask="'alias': 'numeric', 'groupSeparator': '',
+                                                <input type="text" class="form-control text-left valor" id="inputValor"
+                                                       name='valor' placeholder="R$ 00,00" data-inputmask="'alias': 'numeric', 'groupSeparator': '',
                                                 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'">
                                             </div>
                                         </div>
@@ -95,11 +94,9 @@
                                             <label for="updated_at" class="col-sm-2  control-label">Data</label>
 
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control pull-right"
-                                                       id="data_referencia"
-                                                       name="data_referencia" data-inputmask-alias="datetime"
-                                                       data-inputmask-inputformat="dd/mm/yyyy"
-                                                       data-inputmask-placeholder="00/00/0000"
+                                                <input type="text" class="form-control pull-right date"
+                                                       id="data_referencia" name="data_referencia"
+                                                       placeholder="__/__/____" maxlength="10"
                                                        value="{{date("d/m/Y")}}">
                                             </div>
                                         </div>
@@ -118,14 +115,12 @@
                                         </div>
                                     </div>
                                     <div class="box-footer">
-                                        <a href="/divida">
-                                            <div style="margin-left: 160px;" class="btn btn-default">Voltar</div>
-                                        </a>
                                         <button type="submit" class="btn btn-info pull-right">Adicionar</button>
                                     </div>
                                 </form>
                             </div>
-                            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="tab-pane fade show active" id="profile" role="tabpanel"
+                                 aria-labelledby="profile-tab">
                                 <form class="form-horizontal" style='margin-right: 200px;' method="post"
                                       action="/pagamento">
                                     @csrf
@@ -150,28 +145,22 @@
                                             <label for="inputValor" class="col-sm-2  control-label">Valor</label>
 
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control text-left" id="inputValor"
-                                                       name='valor' placeholder="R$ 00,00"
-                                                       data-inputmask="'alias': 'numeric', 'groupSeparator': '',
+                                                <input type="text" class="form-control text-left valor" id="inputValor"
+                                                       name='valor' placeholder="R$ 00,00" data-inputmask="'alias': 'numeric', 'groupSeparator': '',
                                                 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="updated_at" class="col-sm-2  control-label">Data</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control pull-right"
-                                                       id="data_referencia"
-                                                       name="data_referencia" data-inputmask-alias="datetime"
-                                                       data-inputmask-inputformat="dd/mm/yyyy"
-                                                       data-inputmask-placeholder="00/00/0000"
+                                                <input type="text" class="form-control pull-right date"
+                                                       id="data_referencia" name="data_referencia"
+                                                       placeholder="__/__/____" maxlength="10"
                                                        value="{{date("d/m/Y")}}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="box-footer">
-                                        <a href="/pagamento">
-                                            <div style="margin-left: 160px;" class="btn btn-default">Voltar</div>
-                                        </a>
                                         <button type="submit" class="btn btn-info pull-right">Adicionar
                                         </button>
                                     </div>
