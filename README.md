@@ -1,2 +1,2 @@
 # Expense-Sheets
-Home Expenses Managment System 
+Home Expenses Management System 
